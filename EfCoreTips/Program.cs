@@ -12,6 +12,7 @@ namespace EfCoreTips
             //ObterSQlGerado();
             //DebugView();
             //RedefinirEstadoContexto();
+            //FiltroNoIncluide();
         }
 
         static void ObterSQlGerado()
@@ -41,6 +42,18 @@ namespace EfCoreTips
             using var db = new ApplicationContext();
 
             db.Departamentos.Add(new Departamento { Descricao = "teste debug view" });
+
+            db.ChangeTracker.Clear();
+        }
+
+        static void FiltroNoIncluide()
+        {
+            using var db = new ApplicationContext();
+
+            db.Departamentos
+                .Include(lbda => lbda.Colaboradores ?? new List<Colaborador>()
+                    .Where(c => c.Nome.Contains("teste")))
+                .ToQueryString();
 
             db.ChangeTracker.Clear();
         }
