@@ -7,6 +7,7 @@ namespace EfCoreTips.Data
     {
         public DbSet<Colaborador> Colaboradores { get; set; } = default!;
         public DbSet<Departamento> Departamentos { get; set; } = default!;
+        public DbSet<UsuarioFuncao> UsuarioFuncoes { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

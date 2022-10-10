@@ -13,6 +13,7 @@ namespace EfCoreTips
             //DebugView();
             //RedefinirEstadoContexto();
             //FiltroNoIncluide();
+            SemChavePrimaria();
         }
 
         static void ObterSQlGerado()
@@ -56,6 +57,19 @@ namespace EfCoreTips
                 .ToQueryString();
 
             db.ChangeTracker.Clear();
+        }
+
+        static void SemChavePrimaria()
+        {
+            //O EfCore é capaz de gerar e consultar dados em uma tabela sem PK,
+            //mas não realizar insercoes, remocoes ou updates!
+
+            using var db = new ApplicationContext();
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
+
+            var usuarioFuncoes = db.UsuarioFuncoes.Where(lbda =>
+                lbda.UsuarioId == Guid.NewGuid()).ToArray();
         }
     }
 }
