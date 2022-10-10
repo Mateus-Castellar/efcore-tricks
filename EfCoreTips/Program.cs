@@ -14,7 +14,7 @@ namespace EfCoreTips
             //RedefinirEstadoContexto();
             //FiltroNoIncluide();
             //SemChavePrimaria();
-            ToView();
+            //ToView();
         }
 
         static void ObterSQlGerado()

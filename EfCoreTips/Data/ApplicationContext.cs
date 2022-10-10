@@ -1,4 +1,5 @@
-﻿using EfCoreTips.Models;
+﻿using EfCoreTips.Extensions;
+using EfCoreTips.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EfCoreTips.Data
@@ -28,6 +29,8 @@ namespace EfCoreTips.Data
 
                 lbda.Property(lbda => lbda.Departamento).HasColumnName("Descricao");
             });
+
+            modelBuilder.ToSnakeCaseNames();
         }
     }
 }
